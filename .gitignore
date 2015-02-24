@@ -1,0 +1,24 @@
+# Node modules #
+node_modules
+
+# Idea modules
+*.iml
+
+# Temp Files #
+.*
+
+# Contains root compiled assets #
+public/**
+
+# Logs #
+*.log
+log/**
+
+# Custom log4js configs
+log4js*.json
+!log4js.json
+
+# Except #
+!.gitignore
+!.jshintrc
+!.npmrc

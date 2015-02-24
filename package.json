@@ -1,0 +1,26 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fenderz/todo-list.git"
+  },
+  "author": "Rinat Hafiyatullin <r.hafiyatullin@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.1",
+    "gulp-autoprefixer": "*",
+    "gulp-connect": "*",
+    "gulp-cssmin": "*",
+    "gulp-imagemin": "*",
+    "gulp-stylus": "2.0.0",
+    "gulp-uglify": "*",
+    "gulp-watch": "*",
+    "imagemin-pngquant": "*"
+ }
+}
