@@ -4,6 +4,9 @@ node_modules
 # Idea modules
 *.iml
 
+# bower modules
+bower_components
+
 # Temp Files #
 .*
 
