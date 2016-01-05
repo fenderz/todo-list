@@ -1,0 +1,35 @@
+{
+  "sections": [
+    { "id": 1, "title": "Frontend" },
+    { "id": 2, "title": "Backend" },
+    { "id": 3, "title": "QA" },
+    { "id": 4, "title": "DataBase" },
+    { "id": 5, "title": "JS Libraries" },
+    { "id": 6, "title": "JS Frameworks" }
+  ],
+  "topics": [
+    { "id": 1, "section": 1, "title": "JavaScript"},
+    { "id": 2, "section": 1, "title": "CSS"},
+    { "id": 3, "section": 1, "title": "HTML"},
+
+    { "id": 4, "section": 2, "title": "PHP"},
+    { "id": 5, "section": 2, "title": "Ruby"},
+    { "id": 6, "section": 2, "title": "Java"},
+
+    { "id": 7, "section": 3, "title": "Test"},
+    { "id": 8, "section": 3, "title": "Auto Test"},
+    { "id": 9, "section": 3, "title": "Manual Test"},
+
+    { "id": 10, "section": 4, "title": "Oracle"},
+    { "id": 11, "section": 4, "title": "MySQL"},
+    { "id": 12, "section": 4, "title": "MongoDB"},
+
+    { "id": 13, "section": 5, "title": "jQuery"},
+    { "id": 14, "section": 5, "title": "MooTools"},
+    { "id": 15, "section": 5, "title": "Underscore"},
+
+    { "id": 16, "section": 6, "title": "Backbone"},
+    { "id": 17, "section": 6, "title": "Angular"},
+    { "id": 18, "section": 6, "title": "React"}
+  ]
+}

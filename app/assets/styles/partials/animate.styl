@@ -1,0 +1,71 @@
+.animateTop
+.animateBottom
+.animateLeft
+.animateRight
+    animation-duration: 0.9s;
+    animation-fill-mode: both;
+
+.animateTop
+    animation-name: animateTop
+
+.animateBottom
+    animation-name: animateBottom
+
+.animateLeft
+    animation-name: animateLeft
+
+.animateRight
+    animation-name: animateRight
+
+
+@keyframes animateTop {
+
+    0% {
+        opacity: 0
+        transform: translateY(-40px)
+    }
+
+    100% {
+        opacity: 1
+        transform: translateY(0)
+    }
+}
+
+@keyframes animateBottom {
+
+    0% {
+        opacity: 0
+        transform: translateY(40px)
+    }
+
+    100% {
+        opacity: 1
+        transform: translateY(0)
+    }
+}
+
+@keyframes animateRight {
+
+    0% {
+        opacity: 0
+        transform: translateX(60px)
+    }
+
+    100% {
+        opacity: 1
+        transform: translateX(0)
+    }
+}
+
+@keyframes animateLeft {
+
+    0% {
+        opacity: 0
+        transform: translateX(-60px)
+    }
+
+    100% {
+        opacity: 1
+        transform: translateX(0)
+    }
+}

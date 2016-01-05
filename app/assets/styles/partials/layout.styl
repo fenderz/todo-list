@@ -1,0 +1,24 @@
+.layout
+    max-width: $grid_hd
+    padding: 0 20px
+    margin: 0 auto
+    height: 100%
+    box-sizing: border-box
+
+    &:before
+        content: ''
+        height: 100%
+        vertical-align: middle
+        display: inline-block
+
+    &__content-wrap
+        display: inline-block
+        vertical-align: middle
+        width: 100%
+
+/* media query */
+@media $media_mobile
+    .layout
+        height: auto
+        min-width: 320px
+        padding-bottom: 20px

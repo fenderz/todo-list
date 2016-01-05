@@ -1,0 +1,49 @@
+html, body
+    height: 100%
+
+.page-body
+    font-family: 400 14/1.3 $fontRoboto
+    background-size: 50px 50px;
+    background-color: $color_white
+    background-image: linear-gradient(90deg, rgba($color_mint,.5) 50%, transparent 50%),
+    linear-gradient(rgba($color_mint,.5) 50%, transparent 50%);
+
+.container
+    background: $color_white
+    border-radius: 5px
+    padding: 20px
+    box-shadow: 0 0 2px rgba($color_dark, .2)
+    @extend .animateBottom
+    animation-delay: 0.6s
+
+.noselect
+    user-select: none;
+
+.nofocus
+    outline: none
+
+:placeholder
+:input-placeholder {
+    color: $color_gray
+    opacity: 1;
+}
+
+.transition
+    transition-duration: $time
+    transition-timing-function: $function
+
+//Transition mixin
+change-props()
+    transition-duration: $time
+    transition-timing-function: $function
+    transition-property: arguments
+    will-change: arguments
+
+/* media query */
+@media $media_tablet
+    .page-body
+        -ms-touch-action: manipulation
+        touch-action: manipulation
+
+    .container
+        animation: none
