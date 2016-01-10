@@ -5,6 +5,8 @@ var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-cssmin');
+var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var nib = require('nib');
 
@@ -17,8 +19,11 @@ gulp.task('styles', function () {
         .src(stylesPath)
         .pipe(stylus({ use: nib(),  import: ['nib']}))
         .pipe(concat('bundle.css'))
-        .pipe(cssmin())
+        //.pipe(cssmin())
+        .pipe(sourcemaps.init())
+        .pipe(cssnano())
         .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./public/styles'));
         //.pipe(notify('Done!'));
 });
