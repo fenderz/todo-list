@@ -1,0 +1,77 @@
+.form
+    margin-bottom: 20px
+    width: 32%
+
+    &__title
+        margin-bottom: 15px
+        font: 500 14px/1.1 $fontRoboto
+        color: $color_dark
+
+    &__radio-set
+        margin-bottom: 15px
+        border-radius: 5px
+        overflow: hidden
+        border: 1px solid $color_pink
+
+    &__radio
+        display: inline-block
+        width: 50%
+        box-sizing: border-box
+
+    &__radio-input
+        position: absolute
+        left: -1000px
+        visibility: hidden
+
+        &:checked + .form__radio-label
+            background: $color_pink
+            color: $color_white
+
+    &__radio-label
+        display: block
+        font: 300 14px/32px $fontRoboto
+        cursor: pointer
+        text-align: center
+        height: 32px
+
+    &__input
+    &__textarea
+        border-radius: 5px
+        border: 1px solid $color_gray
+        width: 100%
+        padding: 10px;
+        margin-bottom: 15px
+        box-sizing: border-box
+        outline: none
+        change-props: min-width
+        font: 300 14px/1.1 $fontRoboto
+
+    &__textarea
+        min-height: 100px
+        resize: vertical
+
+    &__button
+        font: 300 13px/1.2 $fontRoboto
+        border-radius: 5px
+        display: block
+        padding: 8px 0
+        width: 100%
+        background: $color_mint
+        color: $color_white
+        cursor: pointer
+        border-color: transparent
+
+        &:hover
+            background: rgba($color_mint, .8)
+
+/* media query */
+@media $media_tablet
+
+    .form
+        width: 66%
+
+
+@media $media_mobile
+
+    .form
+        width: 100%

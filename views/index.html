@@ -16,8 +16,21 @@
     <div class="layout__content-wrap">
         <h1 class="title">ToDo List</h1>
         <div class="container">
-            <div class="filter">
-                <input class="filter__input" placeholder="Filter">
+            <div class="form">
+                <h2 class="form__title">Add ToDo</h2>
+                <div class="form__radio-set">
+                    <span class="form__radio">
+                        <input class="form__radio-input" checked id="male" name="gender" value="male" type="radio">
+                        <label for="male" class="form__radio-label">Male</label>
+                    </span>
+                    <span class="form__radio">
+                        <input class="form__radio-input" id="female" name="gender" value="female" type="radio">
+                        <label for="female" class="form__radio-label">Female</label>
+                    </span>
+                </div>
+                <input class="form__input" placeholder="Title">
+                <textarea class="form__textarea" name="" placeholder="Description"></textarea>
+                <button class="form__button" type="button">Add</button>
             </div>
             <div class="sections"></div>
         </div>
