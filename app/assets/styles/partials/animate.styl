@@ -2,6 +2,7 @@
 .animateBottom
 .animateLeft
 .animateRight
+.animateFadeIn
     animation-duration: 0.9s;
     animation-fill-mode: both;
 
@@ -16,6 +17,9 @@
 
 .animateRight
     animation-name: animateRight
+
+.animateFadeIn
+    animation-name: animateFadeIn
 
 
 @keyframes animateTop {
@@ -67,5 +71,16 @@
     100% {
         opacity: 1
         transform: translateX(0)
+    }
+}
+
+@keyframes animateFadeIn {
+
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
     }
 }

@@ -13,8 +13,8 @@ html, body
     border-radius: 5px
     padding: 20px
     box-shadow: 0 0 2px rgba($color_dark, .2)
-    @extend .animateBottom
-    animation-delay: 0.6s
+    /*@extend .animateBottom
+    animation-delay: 0.6s*/
 
 .noselect
     user-select: none;
@@ -22,11 +22,16 @@ html, body
 .nofocus
     outline: none
 
+hr
+    border-top: 1px solid $color_gray
+    border-bottom: none
+    margin: 40px 0
+
 :placeholder
-:input-placeholder {
+:input-placeholder
     color: $color_gray
     opacity: 1;
-}
+
 
 .transition
     transition-duration: $time
