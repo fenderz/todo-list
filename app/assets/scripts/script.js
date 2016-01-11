@@ -1,5 +1,11 @@
 function buildSections(container, data) {
-    var sections = data.male.concat(data.female);
+    if (data === null) {
+        return;
+    }
+
+    var male = data.male || [];
+    var female = data.female || [];
+    var sections = male.concat(female);
 
     container.innerHTML = '';
 
@@ -31,11 +37,17 @@ function buildSections(container, data) {
     return container;
 }
 
+function setData(data) {
+    localStorage.setItem('todo', JSON.stringify(data));
+}
+
+function getData(name) {
+    return JSON.parse(localStorage.getItem(name))
+}
+
 function main() {
-    var data = {
-        male:[],
-        female:[]
-    };
+    var data = (getData('todo') !== null) ? getData('todo') : {male: [],female: []};
+
 
     var container = document.querySelector('.sections');
     var input = document.querySelector('.form__input');
@@ -57,9 +69,14 @@ function main() {
         input.value = '';
         textarea.value = '';
 
+        setData(data);
+
         buildSections(container, data);
     });
+
+    buildSections(container, getData('todo'));
 
 }
 
 main();
+
