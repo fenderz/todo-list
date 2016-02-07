@@ -42,16 +42,21 @@ function setData(data) {
 }
 
 function getData(name) {
-    return JSON.parse(localStorage.getItem(name))
+    var json = JSON.parse(localStorage.getItem(name));
+    return json ? json : {male: [],female: []}
+}
+
+function removeData() {
+    localStorage.clear()
 }
 
 function main() {
-    var data = (getData('todo') !== null) ? getData('todo') : {male: [],female: []};
-
+    var data = getData('todo');
 
     var container = document.querySelector('.sections');
     var input = document.querySelector('.form__input');
     var textarea = document.querySelector('.form__textarea');
+    var removeButton = document.querySelector('.button');
     var button = document.querySelector('.form__button');
 
     button.addEventListener('click', function (e) {
@@ -72,6 +77,11 @@ function main() {
         setData(data);
 
         buildSections(container, data);
+    });
+
+    removeButton.addEventListener('click', function () {
+        removeData();
+        buildSections(container, getData('todo'));
     });
 
     buildSections(container, getData('todo'));
