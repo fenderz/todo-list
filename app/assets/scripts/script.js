@@ -1,11 +1,9 @@
 function buildSections(container, data) {
-    if (data === null) {
+    if (!data.length) {
         return;
     }
 
-    var male = data.male || [];
-    var female = data.female || [];
-    var sections = male.concat(female);
+    var sections = data;
 
     container.innerHTML = '';
 
@@ -43,12 +41,21 @@ function setData(data) {
 
 function getData(name) {
     var json = JSON.parse(localStorage.getItem(name));
-    return json ? json : {male: [],female: []}
+    return json ? json : []
 }
 
 function removeData() {
-    localStorage.clear()
+    localStorage.clear();
+    console.log(getData('todo'));
 }
+
+function buildEmptyList() {
+    var EMPTY_TEXT = 'ToDo List is empty';
+    var container = document.querySelector('.sections');
+    container.innerHTML = EMPTY_TEXT;
+}
+
+//console.log(getData('todo'));
 
 function main() {
     var data = getData('todo');
@@ -59,7 +66,7 @@ function main() {
     var removeButton = document.querySelector('.button');
     var button = document.querySelector('.form__button');
 
-    button.addEventListener('click', function (e) {
+    button.addEventListener('click', function () {
         var todo = {};
         var title = input.value;
         var desc = textarea.value;
@@ -69,7 +76,7 @@ function main() {
         todo.description = desc;
         todo.gender = gender;
 
-        data[gender].push(todo);
+        data.push(todo);
 
         input.value = '';
         textarea.value = '';
@@ -81,7 +88,7 @@ function main() {
 
     removeButton.addEventListener('click', function () {
         removeData();
-        buildSections(container, getData('todo'));
+        buildEmptyList();
     });
 
     buildSections(container, getData('todo'));
