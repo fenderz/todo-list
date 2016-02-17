@@ -55,11 +55,7 @@ function buildEmptyList() {
     container.innerHTML = EMPTY_TEXT;
 }
 
-//console.log(getData('todo'));
-
 function main() {
-    var data = getData('todo');
-
     var container = document.querySelector('.sections');
     var input = document.querySelector('.form__input');
     var textarea = document.querySelector('.form__textarea');
@@ -67,6 +63,7 @@ function main() {
     var button = document.querySelector('.form__button');
 
     button.addEventListener('click', function () {
+        var data = getData('todo');
         var todo = {};
         var title = input.value;
         var desc = textarea.value;
