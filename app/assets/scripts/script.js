@@ -50,9 +50,12 @@ function removeData() {
 }
 
 function buildEmptyList() {
-    var EMPTY_TEXT = 'ToDo List is empty';
     var container = document.querySelector('.sections');
-    container.innerHTML = EMPTY_TEXT;
+    var tmp = '<div class="empty">' +
+        '<h2 class="empty__title">ToDo List is empty</h2>' +
+        '<button class="button">Add ToDo</button>' +
+        '</div>';
+    container.innerHTML = tmp;
 }
 
 function main() {
