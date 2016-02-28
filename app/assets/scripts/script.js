@@ -67,16 +67,18 @@ function main() {
 
     button.addEventListener('click', function () {
         var data = getData('todo');
-        var todo = {};
+        var todo = {
+            status:'active'
+        };
         var title = input.value;
         var desc = textarea.value;
         var gender = document.querySelector('.form__radio-input:checked').value;
 
-        todo.title = title;
-        todo.description = desc;
+        todo.title = title ? title :'--';
+        todo.description = desc ? desc :'--';
         todo.gender = gender;
 
-        data.push(todo);
+        data.unshift(todo);
 
         input.value = '';
         textarea.value = '';
