@@ -13,11 +13,19 @@
     <link rel="stylesheet" type="text/css" href="/styles/bundle.min.css" media="all">
 </head>
 <body class="page-body">
-<button class="button button_remove js-delete">
-    <i class="fa fa-trash fa-lg"></i>
-    Delete all ToDo
-</button>
+<div class="popup popup_open">
+    <div class="popup__overlay"></div>
+    <div class="popup__body">
+        <span class="popup__close">
+            <i class="fa fa-times"></i>
+        </span>
+    </div>
+</div>
 <div class="layout">
+    <button class="button button_remove js-delete">
+        <i class="fa fa-trash fa-lg"></i>
+        Delete all ToDo
+    </button>
     <div class="layout__content-wrap">
         <h1 class="title">ToDo List</h1>
         <div class="container">

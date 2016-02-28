@@ -1,0 +1,48 @@
+.popup
+    position: fixed
+    z-index 100
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    visibility: hidden
+    opacity: 0
+    text-align: center
+    transition: all .3s linear
+
+    &:before
+        content: ''
+        height: 100%
+        vertical-align: middle
+        display: inline-block
+
+    &__overlay
+        background: rgba(#000, .8)
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        z-index: 1
+
+    &__body
+        display: inline-block
+        vertical-align: middle
+        text-align: left
+        position: relative
+        z-index: 10
+        border-radius: 5px
+        background: #fff
+        box-shadow: 0 0 35px 5px rgba(#000, .8)
+        padding: 20px
+        width: 500px
+        min-height: 200px
+
+    &__close
+        position: absolute
+        right: 10px
+        top: 10px
+
+    &_open
+        opacity: 1
+        visibility: visible
