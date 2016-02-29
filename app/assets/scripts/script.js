@@ -1,3 +1,14 @@
+var container = document.querySelector('.sections');
+var popup = document.querySelector('.js-popup');
+
+function openPopup() {
+    popup.classList.add('popup_open');
+}
+
+function closePopup() {
+    popup.classList.remove('popup_open');
+}
+
 function buildSections(container, data) {
     if (!data.length) {
         return;
@@ -50,7 +61,7 @@ function removeData() {
 }
 
 function buildEmptyList() {
-    var container = document.querySelector('.sections');
+    //var container = document.querySelector('.sections');
     var tmp = '<div class="empty">' +
         '<h2 class="empty__title">ToDo List is empty</h2>' +
         '<button class="button">Add ToDo</button>' +
@@ -59,11 +70,14 @@ function buildEmptyList() {
 }
 
 function main() {
-    var container = document.querySelector('.sections');
+    //var container = document.querySelector('.sections');
     var input = document.querySelector('.form__input');
     var textarea = document.querySelector('.form__textarea');
     var removeButton = document.querySelector('.button');
     var button = document.querySelector('.form__button');
+    var addButton = document.querySelector('.js-add-todo');
+    var closeButton = document.querySelector('.js-close-popup');
+
 
     button.addEventListener('click', function () {
         var data = getData('todo');
@@ -84,13 +98,21 @@ function main() {
         textarea.value = '';
 
         setData(data);
-
+        closePopup();
         buildSections(container, data);
     });
 
     removeButton.addEventListener('click', function () {
         removeData();
         buildEmptyList();
+    });
+
+    addButton.addEventListener('click', function () {
+        openPopup();
+    });
+
+    closeButton.addEventListener('click', function () {
+        closePopup();
     });
 
     buildSections(container, getData('todo'));

@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href="/styles/bundle.min.css" media="all">
 </head>
 <body class="page-body">
-<div class="popup popup_open">
+<div class="popup js-popup">
     <div class="popup__overlay"></div>
     <div class="popup__body">
-        <span class="popup__close">
+        <span class="popup__close js-close-popup">
             <i class="fa fa-times"></i>
         </span>
         <div class="form">
@@ -51,27 +51,10 @@
     <div class="layout__content-wrap">
         <h1 class="title">ToDo List</h1>
         <div class="container">
-            {#<div class="form">
-                <h2 class="form__title">Add ToDo</h2>
-                <div class="form__radio-set">
-                    <span class="form__radio">
-                        <input class="form__radio-input" checked id="male" name="gender" value="male" type="radio">
-                        <label for="male" class="form__radio-label">Male</label>
-                    </span>
-                    <span class="form__radio">
-                        <input class="form__radio-input" id="female" name="gender" value="female" type="radio">
-                        <label for="female" class="form__radio-label">Female</label>
-                    </span>
-                </div>
-                <input class="form__input" placeholder="Title">
-                <textarea class="form__textarea" name="" placeholder="Description"></textarea>
-                <button class="form__button" type="button"><i class="fa fa-plus"></i> Add</button>
-            </div>
-            <hr>#}
             <div class="sections">
                 <div class="empty">
                     <h2 class="empty__title">ToDo List is empty</h2>
-                    <button class="button"><i class="fa fa-plus"></i> Add ToDo</button>
+                    <button class="button js-add-todo"><i class="fa fa-plus"></i> Add ToDo</button>
                 </div>
                 <!--<div class="sections__item">
                     <h2 class="sections__title" data-todo-id="1">Title</h2>
