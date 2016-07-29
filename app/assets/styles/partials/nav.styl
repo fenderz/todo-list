@@ -1,21 +1,34 @@
-.button
-    background: $color_pink
-    padding: 10px
-    min-width: 180px
-    border-color: transparent
-    border-radius: 5px
-    cursor: pointer
-    color: $color_white
-    font: 300 14px/1.2 $fontRoboto
+.top-nav
+    position absolute
+    text-align center
+    top 0
+    right 0
+    left 0
+    opacity 0
+    transition opacity $time $function
 
-    &_remove
-        position: fixed
-        right: 60px
-        top: 20px
-        z-index: 10
+    &:hover
+        opacity 1
 
-.element
-    border-radius 50%
-    display inline-block
-    padding 5%
-    background $color_pink
+    &__item
+        display inline-block
+        vertical-align middle
+        margin 2%
+
+    &__link
+        display inline-block
+        vertical-align middle
+        padding 15px 20px
+        border-radius 3px
+        color $color_white
+        background $color_gray
+        text-decoration none
+        font: 300 16px/1.2 $fontLobster
+        transition background $time $function
+
+        &_active
+            background $color_pink
+
+        &:hover
+            background rgba($color_pink, .9);
+

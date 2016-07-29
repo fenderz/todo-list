@@ -1,15 +1,91 @@
-.button
-    background: $color_pink
-    padding: 10px
-    min-width: 180px
-    border-color: transparent
-    border-radius: 5px
-    cursor: pointer
-    color: $color_white
-    font: 300 14px/1.2 $fontRoboto
+$height = 200px
+$width = $height
 
-    &_remove
-        position: fixed
-        right: 60px
-        top: 20px
-        z-index: 10
+.element
+    border-radius 50%
+    display inline-block
+    vertical-align middle
+    background $color_pink
+    width $width
+    height $height
+    font-size 20px
+
+.example-1
+
+    .element
+        position absolute
+        left 50%
+        top 50%
+        margin-top -($height / 2)
+        margin-left -($width / 2)
+
+.example-2
+
+    .element
+        position absolute
+        left 0
+        right 0
+        top 0
+        bottom 0
+        margin auto
+
+.example-3
+    display table
+    width 100%
+
+    .table-cell
+        display table-cell
+        vertical-align middle
+        text-align center
+
+.example-4
+
+    .element
+        position absolute
+        left 50%
+        top 50%
+        transform translate(-50%, -50%)
+
+.example-5
+    text-align center
+    white-space nowrap
+
+    .element
+        width auto
+        height auto
+        background none
+
+    &:before
+        content ''
+        display inline-block
+        height 100%
+        vertical-align middle
+
+.example-6
+    display flex
+    align-items center
+    justify-content center
+
+
+.text
+    display inline-block
+    vertical-align middle
+    border-radius 5px
+    background $color_white
+    box-shadow 0 0 10px rgba($color_dark, .3)
+    overflow hidden
+
+    &__inner
+        display inline-block
+        color $color_dark
+        height 200px
+        padding 0 100px
+        //border-radius 5px
+        text-align center
+        min-width 30%
+        font-size 60px
+        font-family $fontRoboto
+        line-height @height
+        box-shadow 0 100px $color_white inset, 0 101px $color_pink inset
+
+

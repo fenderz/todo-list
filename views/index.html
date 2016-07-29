@@ -1,8 +1,8 @@
-{% spaceless %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>ToDo List</title>
+    <title>Centering</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.6, user-scalable=no">
     <meta name="description" content="ToDo List">
@@ -12,108 +12,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/styles/bundle.min.css" media="all">
 </head>
-<body class="page-body">
-<div class="popup popup_open">
-    <div class="popup__overlay"></div>
-    <div class="popup__body">
-        <span class="popup__close">
-            <i class="fa fa-times"></i>
-        </span>
-        <div class="form">
-            <h2 class="form__title">Add ToDo</h2>
-            <div class="form__row">
-                <div class="form__radio-set">
-                        <span class="form__radio">
-                            <input class="form__radio-input" checked id="male" name="gender" value="male" type="radio">
-                            <label for="male" class="form__radio-label">Male</label>
-                        </span>
-                        <span class="form__radio">
-                            <input class="form__radio-input" id="female" name="gender" value="female" type="radio">
-                            <label for="female" class="form__radio-label">Female</label>
-                        </span>
-                </div>
-            </div>
-            <div class="form__row">
-                <input class="form__input" placeholder="Title">
-            </div>
-            <div class="form__row">
-                <textarea class="form__textarea" name="" placeholder="Description"></textarea>
-            </div>
-            <button class="form__button" type="button"><i class="fa fa-plus"></i> Add</button>
-        </div>
-    </div>
-</div>
+<body class="page-body example-1">
+<ul class="top-nav">
+    <li class="top-nav__item">
+        <a class="top-nav__link top-nav__link_active" href="/">Example 1</a>
+    </li>
+    <li class="top-nav__item">
+        <a class="top-nav__link" href="example-1.html">Example 2</a>
+    </li>
+    <li class="top-nav__item">
+        <a class="top-nav__link" href="example-1.html">Example 3</a>
+    </li>
+    <li class="top-nav__item">
+        <a class="top-nav__link" href="example-1.html">Example 4</a>
+    </li>
+    <li class="top-nav__item">
+        <a class="top-nav__link" href="example-1.html">Example 5</a>
+    </li>
+    <li class="top-nav__item">
+        <a class="top-nav__link" href="example-1.html">Example 6</a>
+    </li>
+</ul>
 <div class="layout">
-    <button class="button button_remove js-delete">
-        <i class="fa fa-trash fa-lg"></i>
-        Delete all ToDo
-    </button>
     <div class="layout__content-wrap">
-        <h1 class="title">ToDo List</h1>
-        <div class="container">
-            {#<div class="form">
-                <h2 class="form__title">Add ToDo</h2>
-                <div class="form__radio-set">
-                    <span class="form__radio">
-                        <input class="form__radio-input" checked id="male" name="gender" value="male" type="radio">
-                        <label for="male" class="form__radio-label">Male</label>
-                    </span>
-                    <span class="form__radio">
-                        <input class="form__radio-input" id="female" name="gender" value="female" type="radio">
-                        <label for="female" class="form__radio-label">Female</label>
-                    </span>
-                </div>
-                <input class="form__input" placeholder="Title">
-                <textarea class="form__textarea" name="" placeholder="Description"></textarea>
-                <button class="form__button" type="button"><i class="fa fa-plus"></i> Add</button>
-            </div>
-            <hr>#}
-            <div class="sections">
-                <div class="empty">
-                    <h2 class="empty__title">ToDo List is empty</h2>
-                    <button class="button"><i class="fa fa-plus"></i> Add ToDo</button>
-                </div>
-                <!--<div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="1">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>
-                <div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="2">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>
-                <div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="3">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>
-                <div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="4">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>
-                <div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="5">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>
-                <div class="sections__item">
-                    <h2 class="sections__title" data-todo-id="6">Title</h2>
-                    <p class="sections__description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eos incidunt laudantium molestias nostrum placeat recusandae voluptas? Consequatur eius facere non, possimus quibusdam sint. Distinctio eaque harum magnam maiores numquam.
-                    </p>
-                </div>-->
-            </div>
-        </div>
+        <h1 class="title">How to center an <br>element?</h1>
+        <a href="example-1.html" class="button">Start!</a>
     </div>
 </div>
-<script src="/scripts/bundle.min.js"></script>
 </body>
 </html>
-{% endspaceless %}
