@@ -1,123 +1,153 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var container = document.querySelector('.sections');
-    var popup = document.querySelector('.js-popup');
+{
+    const POPUP_OPEN_CLASS = 'popup_open';
+    const SECTION_OPEN_CLASS = 'sections__title_open';
+    const MAIN_FIELD_NAME = 'todo';
 
-    function openPopup() {
-        popup.classList.add('popup_open');
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        const containerNode = document.querySelector('.sections');
+        const popupNode = document.querySelector('.js-popup');
 
-    function closePopup() {
-        popup.classList.remove('popup_open');
-    }
+        main();
 
-    function buildSections(container, data) {
-        if (!data.length) {
-            renderAddButton();
-            return;
+        /**
+         * Открыват попап
+         *
+         */
+        function openPopup() {
+            popupNode.classList.add(POPUP_OPEN_CLASS);
         }
 
-        var sections = data;
+        /**
+         * Закрывает попап
+         *
+         */
+        function closePopup() {
+            popupNode.classList.remove(POPUP_OPEN_CLASS);
+        }
 
-        container.innerHTML = '';
-
-        sections.forEach(function (section, index) {
-            var sectionElement = document.createElement('div');
-            var sectionTitle = document.createElement('h2');
-            var sectionDesc = document.createElement('p');
-
-            sectionElement.className = 'sections__item';
-            sectionTitle.className = 'sections__title';
-            sectionDesc.className = 'sections__description';
-
-
-            sectionTitle.textContent = section.title;
-            sectionDesc.textContent = section.description;
-            sectionTitle.dataset.todoId = index + 1;
-
-            function onSectionTitleClick(e) {
-                e.target.classList.toggle("sections__title_open");
+        /**
+         * Строит секции из списка тудушек
+         *
+         * @param {Node} node
+         * @param {Object} data
+         * @returns {*}
+         */
+        function buildSections(node, data) {
+            if (!data.length) {
+                renderAddButton();
+                return;
             }
 
-            sectionTitle.addEventListener('click', onSectionTitleClick);
+            node.innerHTML = '';
 
-            sectionElement.appendChild(sectionTitle);
-            sectionElement.appendChild(sectionDesc);
-            container.appendChild(sectionElement);
-        });
+            data.forEach(function (section, index) {
+                const sectionElement = document.createElement('div');
+                const sectionTitle = document.createElement('h2');
+                const sectionDesc = document.createElement('p');
 
-        return container;
-    }
-
-    function setData(data) {
-        localStorage.setItem('todo', JSON.stringify(data));
-    }
-
-    function getData(name) {
-        var json = JSON.parse(localStorage.getItem(name));
-        return json ? json : []
-    }
-
-    function removeData() {
-        localStorage.clear();
-        console.log(getData('todo'));
-    }
-
-    function renderAddButton() {
-        var tmp = '<div class="empty">' +
-            '<h2 class="empty__title">ToDo List is empty</h2>' +
-            '<button class="button js-add-todo"><i class="fa fa-plus"></i>Add ToDo</button>' +
-            '</div>';
-        container.innerHTML = tmp;
-
-        document.querySelector('.js-add-todo').addEventListener('click', function () {
-            openPopup();
-        });
-    }
-
-    function main() {
-        var input = document.querySelector('.form__input');
-        var textarea = document.querySelector('.form__textarea');
-        var removeButton = document.querySelector('.button');
-        var button = document.querySelector('.form__button');
-        var closeButton = document.querySelector('.js-close-popup');
+                sectionElement.className = 'sections__item';
+                sectionTitle.className = 'sections__title';
+                sectionDesc.className = 'sections__description';
 
 
-        button.addEventListener('click', function () {
-            var data = getData('todo');
-            var todo = {
-                status:'active'
-            };
-            var title = input.value;
-            var desc = textarea.value;
-            var gender = document.querySelector('.form__radio-input:checked').value;
+                sectionTitle.textContent = section.title;
+                sectionDesc.textContent = section.description;
+                sectionTitle.dataset.todoId = index + 1;
 
-            todo.title = title ? title :'--';
-            todo.description = desc ? desc :'--';
-            todo.gender = gender;
+                sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
 
-            data.unshift(todo);
+                sectionElement.appendChild(sectionTitle);
+                sectionElement.appendChild(sectionDesc);
+                node.appendChild(sectionElement);
+            });
 
-            input.value = '';
-            textarea.value = '';
+            return node;
+        }
 
-            setData(data);
-            closePopup();
-            buildSections(container, data);
-        });
+        /**
+         * Сохроняет данные в localStorage
+         *
+         * @param {string} name
+         * @param {Object} data
+         */
+        function setData(name, data) {
+            localStorage.setItem(name, JSON.stringify(data));
+        }
 
-        removeButton.addEventListener('click', function () {
-            removeData();
-            renderAddButton();
-        });
+        /**
+         * Запрашивает данные из localStorage
+         *
+         * @param {string} name
+         * @returns {Array}
+         */
+        function getData(name) {
+            const json = JSON.parse(localStorage.getItem(name));
+            return json ? json : []
+        }
 
-        closeButton.addEventListener('click', function () {
-            closePopup();
-        });
+        /**
+         * Очищает данные из localStorage
+         *
+         */
+        function removeData() {
+            localStorage.clear();
+            console.log(getData(MAIN_FIELD_NAME));
+        }
 
-        buildSections(container, getData('todo'));
-        console.log(getData('todo'));
-    }
+        /**
+         * Рендерит кнопку добавления тудушек
+         *
+         */
+        function renderAddButton() {
+            const tmp = '<div class="empty">' +
+                '<h2 class="empty__title">ToDo List is empty</h2>' +
+                '<button class="button js-add-todo"><i class="fa fa-plus"></i>Add ToDo</button>' +
+                '</div>';
+            containerNode.innerHTML = tmp;
 
-    main();
+            document.querySelector('.js-add-todo').addEventListener('click', openPopup);
+        }
 
-});
+        function main() {
+            const inputNode = document.querySelector('.form__input');
+            const textareaNode = document.querySelector('.form__textarea');
+            const removeButtonNode = document.querySelector('.button');
+            const formButtonNode = document.querySelector('.form__button');
+            const closeButtonNode = document.querySelector('.js-close-popup');
+
+            formButtonNode.addEventListener('click', function () {
+                const data = getData(MAIN_FIELD_NAME);
+                const todo = {
+                    status:'active'
+                };
+                const title = inputNode.value;
+                const desc = textareaNode.value;
+                const gender = document.querySelector('.form__radio-input:checked').value;
+
+                todo.title = title ? title :'--';
+                todo.description = desc ? desc :'--';
+                todo.gender = gender;
+
+                data.unshift(todo);
+
+                inputNode.value = '';
+                textareaNode.value = '';
+
+                setData(MAIN_FIELD_NAME, data);
+                closePopup();
+                buildSections(containerNode, data);
+            });
+
+            removeButtonNode.addEventListener('click', function () {
+                removeData();
+                renderAddButton();
+            });
+
+            closeButtonNode.addEventListener('click', closePopup);
+
+            buildSections(containerNode, getData(MAIN_FIELD_NAME));
+            console.log(getData(MAIN_FIELD_NAME));
+        }
+
+    });
+}
