@@ -1,11 +1,13 @@
 {
     const POPUP_OPEN_CLASS = 'popup_open';
     const SECTION_OPEN_CLASS = 'sections__title_open';
+    const BUTTON_SHOW_CLASS = 'button_show';
     const MAIN_FIELD_NAME = 'todo';
 
     document.addEventListener('DOMContentLoaded', function () {
         const containerNode = document.querySelector('.sections');
         const popupNode = document.querySelector('.js-popup');
+        const addBtnNode = document.querySelector('.js-add-todo');
 
         main();
 
@@ -26,6 +28,15 @@
         }
 
         /**
+         * Скрывает/показыват кнопку подачи
+         *
+         * @param {boolean} isShow
+         */
+        function toggleAddBtn(isShow) {
+            addBtnNode.classList.toggle(BUTTON_SHOW_CLASS, isShow)
+        }
+
+        /**
          * Строит секции из списка тудушек
          *
          * @param {Node} node
@@ -39,6 +50,8 @@
             }
 
             node.innerHTML = '';
+
+            toggleAddBtn(true);
 
             data.forEach(function (section, index) {
                 const sectionElement = document.createElement('div');
@@ -95,7 +108,7 @@
         }
 
         /**
-         * Рендерит кнопку добавления тудушек
+         * Рендерит кнопку подачи, если нет тудушек
          *
          */
         function renderAddButton() {
@@ -106,6 +119,7 @@
             containerNode.innerHTML = tmp;
 
             document.querySelector('.js-add-todo').addEventListener('click', openPopup);
+            toggleAddBtn(false);
         }
 
         function main() {
@@ -114,6 +128,8 @@
             const removeButtonNode = document.querySelector('.button');
             const formButtonNode = document.querySelector('.form__button');
             const closeButtonNode = document.querySelector('.js-close-popup');
+
+            addBtnNode.addEventListener('click', openPopup);
 
             formButtonNode.addEventListener('click', function () {
                 const data = getData(MAIN_FIELD_NAME);

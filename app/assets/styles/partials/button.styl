@@ -7,6 +7,22 @@
     cursor: pointer
     color: $color_white
     font: 300 14px/1.2 $fontRoboto
+    outline: none
+
+    &_add-todo
+        min-width: 60px
+        min-height: 60px
+        border-radius: 50%
+        font-size: 20px
+        position: fixed
+        right: 2%
+        bottom: 2%
+        transform: translateX(200%)
+        transition: transform $time $function, opacity $time $function
+
+    &_show
+        transform: translateX(0)
+        opacity: 1
 
     &_remove
         position: fixed
