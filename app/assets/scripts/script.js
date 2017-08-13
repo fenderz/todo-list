@@ -1,6 +1,8 @@
 {
     const POPUP_OPEN_CLASS = 'popup_open';
     const SECTION_OPEN_CLASS = 'sections__title_open';
+    const SECTION_ITEM_FEMALE_CLASS = 'sections__item_female';
+    const SECTION_ITEM_DONE_CLASS = 'sections__item_done';
     const BUTTON_SHOW_CLASS = 'button_show';
     const MAIN_FIELD_NAME = 'todo';
 
@@ -55,10 +57,11 @@
                 sectionTitle.className = 'sections__title';
                 sectionDesc.className = 'sections__description';
 
-
                 sectionTitle.textContent = section.title;
                 sectionDesc.textContent = section.description;
                 sectionTitle.dataset.todoId = index + 1;
+                sectionElement.classList.toggle(SECTION_ITEM_FEMALE_CLASS, section.gender === 'female');
+                sectionElement.classList.toggle(SECTION_ITEM_DONE_CLASS, section.status === 'done');
 
                 sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
 
