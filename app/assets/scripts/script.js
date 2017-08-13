@@ -12,19 +12,12 @@
         main();
 
         /**
-         * Открыват попап
+         * Открывает/закрывает попап
          *
+         * @param {boolean} isOpen
          */
-        function openPopup() {
-            popupNode.classList.add(POPUP_OPEN_CLASS);
-        }
-
-        /**
-         * Закрывает попап
-         *
-         */
-        function closePopup() {
-            popupNode.classList.remove(POPUP_OPEN_CLASS);
+        function togglePopup(isOpen) {
+            popupNode.classList.toggle(POPUP_OPEN_CLASS, isOpen);
         }
 
         /**
@@ -118,7 +111,7 @@
                 '</div>';
             containerNode.innerHTML = tmp;
 
-            document.querySelector('.js-add-todo').addEventListener('click', openPopup);
+            document.querySelector('.js-add-todo').addEventListener('click', togglePopup(true));
             toggleAddBtn(false);
         }
 
@@ -129,7 +122,7 @@
             const formButtonNode = document.querySelector('.form__button');
             const closeButtonNode = document.querySelector('.js-close-popup');
 
-            addBtnNode.addEventListener('click', openPopup);
+            addBtnNode.addEventListener('click', () => togglePopup(true));
 
             formButtonNode.addEventListener('click', function () {
                 const data = getData(MAIN_FIELD_NAME);
@@ -150,7 +143,7 @@
                 textareaNode.value = '';
 
                 setData(MAIN_FIELD_NAME, data);
-                closePopup();
+                togglePopup(false);
                 buildSections(containerNode, data);
             });
 
@@ -159,7 +152,7 @@
                 renderAddButton();
             });
 
-            closeButtonNode.addEventListener('click', closePopup);
+            closeButtonNode.addEventListener('click', () => togglePopup(false));
 
             buildSections(containerNode, getData(MAIN_FIELD_NAME));
             console.log(getData(MAIN_FIELD_NAME));
