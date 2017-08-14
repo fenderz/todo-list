@@ -9,17 +9,21 @@
     document.addEventListener('DOMContentLoaded', function () {
         const containerNode = document.querySelector('.sections');
         const popupNode = document.querySelector('.js-popup');
+        const formNode = document.querySelector('.js-form');
         const addBtnNode = document.querySelector('.js-add-todo');
 
         main();
 
         /**
-         * Открывает/закрывает попап
+         * Открывает/закрывает попап, очищает форму при закрытие
          *
          * @param {boolean} isOpen
          */
         function togglePopup(isOpen) {
             popupNode.classList.toggle(POPUP_OPEN_CLASS, isOpen);
+            if (!isOpen) {
+                formNode.reset();
+            }
         }
 
         /**
@@ -114,7 +118,7 @@
                 '</div>';
             containerNode.innerHTML = tmp;
 
-            document.querySelector('.js-add-todo').addEventListener('click', togglePopup(true));
+            document.querySelector('.js-add-todo').addEventListener('click', () => togglePopup(true));
             toggleAddBtn(false);
         }
 
