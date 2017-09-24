@@ -6,6 +6,7 @@
         box-sizing: border-box
         display: inline-block
         vertical-align: top
+        position: relative
         border-radius: 5px
         font-weight: 500
         font-size: 14px
@@ -24,8 +25,16 @@
             & ^[0]__title::after
                 background: $color_mint
 
+            & ^[0]__close
+                color: $color_mint
+
         &_done
             opacity: 0.5
+
+        &:hover
+            & ^[0]__close
+                opacity: 1
+                visibility: visible
 
     &__title
         background: $color_white
@@ -88,6 +97,21 @@
         color: $color_white
         margin-bottom: 8px
         padding-left: 10px
+
+    &__close
+        position: absolute
+        top: -10px
+        right: -10px
+        cursor: pointer
+        font-size: 24px
+        border-radius: 50%
+        background: $color_white
+        color: $color_pink
+        width: 22px
+        height: 22px
+        opacity: 0
+        visibility: hidden
+        change-props: visibility, opacity
 
 /* media query */
 @media $media_mobile

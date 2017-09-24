@@ -52,29 +52,45 @@
 
             toggleAddBtn(true);
 
-            data.forEach(function (section, index) {
+            data.forEach(function (section) {
                 const sectionElement = document.createElement('div');
                 const sectionTitle = document.createElement('h2');
                 const sectionDesc = document.createElement('p');
+                const sectionClose = document.createElement('i');
 
                 sectionElement.className = 'sections__item';
                 sectionTitle.className = 'sections__title';
                 sectionDesc.className = 'sections__description';
+                sectionClose.className = 'sections__close fa fa-times-circle';
 
                 sectionTitle.textContent = section.title;
                 sectionDesc.textContent = section.description;
-                sectionTitle.dataset.todoId = index + 1;
+                sectionTitle.dataset.todoId = section.id + 1;
                 sectionElement.classList.toggle(SECTION_ITEM_FEMALE_CLASS, section.gender === 'female');
                 sectionElement.classList.toggle(SECTION_ITEM_DONE_CLASS, section.status === 'done');
 
                 sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
+                sectionClose.addEventListener('click', () => deleteItem(section.id));
 
+                sectionElement.appendChild(sectionClose);
                 sectionElement.appendChild(sectionTitle);
                 sectionElement.appendChild(sectionDesc);
                 node.appendChild(sectionElement);
             });
 
             return node;
+        }
+
+        /**
+         * Удаляет тудушку по id
+         *
+         * @param {number} id
+         */
+        function deleteItem(id) {
+            const filteredData = getData(MAIN_FIELD_NAME).filter(item => item.id !== id);
+
+            setData(MAIN_FIELD_NAME, filteredData);
+            buildSections(containerNode, filteredData);
         }
 
         /**
@@ -143,6 +159,7 @@
                 todo.title = title ? title :'--';
                 todo.description = desc ? desc :'--';
                 todo.gender = gender;
+                todo.id = data.length;
 
                 data.unshift(todo);
 
