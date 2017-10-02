@@ -83,8 +83,8 @@
                     <li class="settings__list-item js-delete">
                         Delete
                     </li>
-                    <li class="settings__list-item js-close">
-                        Close
+                    <li class="settings__list-item js-done">
+                        Done
                     </li>`;
 
                 settingsElement.appendChild(settingsIcon);
@@ -98,6 +98,7 @@
                 sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
                 settingsIcon.addEventListener('click', event => event.target.closest('.js-settings').classList.toggle(SETTINGS_OPEN_CLASS));
                 settingsElement.querySelector('.js-delete').addEventListener('click', () => deleteItem(section.id));
+                settingsElement.querySelector('.js-done').addEventListener('click', () => closeItem(section.id));
             });
 
             return node;
@@ -113,6 +114,22 @@
 
             setData(MAIN_FIELD_NAME, filteredData);
             buildSections(containerNode, filteredData);
+        }
+
+        /**
+         * Закрывает тудушку по id
+         *
+         * @param {number} id
+         */
+        function closeItem(id) {
+            const changedData = getData(MAIN_FIELD_NAME).map((item) => {
+                if (item.id === id) {
+                    item.status = 'done';
+                }
+                return item;
+            });
+            setData(MAIN_FIELD_NAME, changedData);
+            buildSections(containerNode, changedData);
         }
 
         /**
