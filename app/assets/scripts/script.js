@@ -1,6 +1,7 @@
 {
     const POPUP_OPEN_CLASS = 'popup_open';
     const SECTION_OPEN_CLASS = 'sections__title_open';
+    const SETTINGS_OPEN_CLASS = 'settings_open';
     const SECTION_ITEM_FEMALE_CLASS = 'sections__item_female';
     const SECTION_ITEM_DONE_CLASS = 'sections__item_done';
     const BUTTON_SHOW_CLASS = 'button_show';
@@ -38,7 +39,7 @@
         /**
          * Строит секции из списка тудушек
          *
-         * @param {Node} node
+         * @param {HTMLElement} node
          * @param {Object} data
          * @returns {*}
          */
@@ -56,12 +57,18 @@
                 const sectionElement = document.createElement('div');
                 const sectionTitle = document.createElement('h2');
                 const sectionDesc = document.createElement('p');
-                const sectionClose = document.createElement('i');
+                const sectionClose = document.createElement('div');
+                const settingsElement = document.createElement('div');
+                const settingsIcon = document.createElement('i');
+                const settingsList = document.createElement('ul');
 
                 sectionElement.className = 'sections__item';
                 sectionTitle.className = 'sections__title';
                 sectionDesc.className = 'sections__description';
-                sectionClose.className = 'sections__close fa fa-times-circle';
+                sectionClose.className = 'sections__close';
+                settingsElement.className = 'settings js-settings';
+                settingsIcon.className = 'settings__icon fa fa-cog js-settings-icon';
+                settingsList.className = 'settings__list';
 
                 sectionTitle.textContent = section.title;
                 sectionDesc.textContent = section.description;
@@ -69,13 +76,28 @@
                 sectionElement.classList.toggle(SECTION_ITEM_FEMALE_CLASS, section.gender === 'female');
                 sectionElement.classList.toggle(SECTION_ITEM_DONE_CLASS, section.status === 'done');
 
-                sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
-                sectionClose.addEventListener('click', () => deleteItem(section.id));
+                settingsList.innerHTML = `
+                    <li class="settings__list-item js-edit">
+                        Edit
+                    </li>
+                    <li class="settings__list-item js-delete">
+                        Delete
+                    </li>
+                    <li class="settings__list-item js-close">
+                        Close
+                    </li>`;
 
+                settingsElement.appendChild(settingsIcon);
+                settingsElement.appendChild(settingsList);
+                sectionClose.appendChild(settingsElement);
                 sectionElement.appendChild(sectionClose);
                 sectionElement.appendChild(sectionTitle);
                 sectionElement.appendChild(sectionDesc);
                 node.appendChild(sectionElement);
+
+                sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
+                settingsIcon.addEventListener('click', event => event.target.closest('.js-settings').classList.toggle(SETTINGS_OPEN_CLASS));
+                settingsElement.querySelector('.js-delete').addEventListener('click', () => deleteItem(section.id));
             });
 
             return node;

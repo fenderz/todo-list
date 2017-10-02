@@ -1,0 +1,44 @@
+.settings
+    position: relative
+    z-index: 10
+
+    &__icon
+        cursor: pointer
+        font-size: 20px
+        border-radius: 50%
+        background: $color_white
+        color: $color_pink
+        width: 22px
+        height: 22px
+        text-align: center
+        line-height: @height
+
+    &__list
+        position: absolute
+        right: 0
+        background: $color_white
+        border-radius: 3px
+        border: 1px solid $color_pink
+        font-size: 12px
+        cursor: pointer
+        opacity: 0
+        visibility: hidden
+        overflow: hidden
+        max-height: 0
+
+        &-item
+            padding: 5px
+            min-width: 80px
+            border-bottom: 1px solid $color_pink
+
+            &:hover
+                background: rgba(#FF6B6B, .1)
+
+            &:last-child
+                border-bottom: 0
+
+    &_open
+        & ^[0]__list
+            opacity: 1
+            visibility: visible
+            max-height: 100px
