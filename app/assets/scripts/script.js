@@ -17,6 +17,7 @@
         const inputNode = document.querySelector('.form__input');
         const textareaNode = document.querySelector('.form__textarea');
         let isPopupOpen = false;
+        let isEdit = false;
 
         main();
 
@@ -104,11 +105,28 @@
 
                 sectionTitle.addEventListener('click', event => event.target.classList.toggle(SECTION_OPEN_CLASS));
                 settingsIcon.addEventListener('click', event => event.target.closest('.js-settings').classList.toggle(SETTINGS_OPEN_CLASS));
+                settingsElement.querySelector('.js-edit').addEventListener('click', () => editItem(section.id));
                 settingsElement.querySelector('.js-delete').addEventListener('click', () => deleteItem(section.id));
                 settingsElement.querySelector('.js-done').addEventListener('click', () => closeItem(section.id));
             });
 
             return node;
+        }
+
+        /**
+         * Редактирует тудушку по id
+         *
+         * @param {number} id
+         */
+        function editItem(id) {
+            const item = getData(MAIN_FIELD_NAME).filter(item => item.id === id)[0];
+            inputNode.value = item.title;
+            textareaNode.value = item.description;
+            if (item.gender === 'female') {
+                document.querySelector('#female.form__radio-input').checked = true;
+            }
+            isEdit = true;
+            togglePopup(true);
         }
 
         /**
@@ -222,10 +240,11 @@
             todo.gender = gender;
             todo.id = data.length;
 
-            data.unshift(todo);
+            if (isEdit) {
 
-            inputNode.value = '';
-            textareaNode.value = '';
+            } else {
+                data.unshift(todo);
+            }
 
             setData(MAIN_FIELD_NAME, data);
             togglePopup(false);
