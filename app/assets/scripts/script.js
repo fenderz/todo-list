@@ -6,12 +6,17 @@
     const SECTION_ITEM_DONE_CLASS = 'sections__item_done';
     const BUTTON_SHOW_CLASS = 'button_show';
     const MAIN_FIELD_NAME = 'todo';
+    const KEY_CODE_ESC = 27;
+    const KEY_CODE_ENTER = 13;
 
     document.addEventListener('DOMContentLoaded', function () {
         const containerNode = document.querySelector('.sections');
         const popupNode = document.querySelector('.js-popup');
         const formNode = document.querySelector('.js-form');
         const addBtnNode = document.querySelector('.js-add-todo');
+        const inputNode = document.querySelector('.form__input');
+        const textareaNode = document.querySelector('.form__textarea');
+        let isPopupOpen = false;
 
         main();
 
@@ -22,7 +27,9 @@
          */
         function togglePopup(isOpen) {
             popupNode.classList.toggle(POPUP_OPEN_CLASS, isOpen);
+            isPopupOpen = isOpen;
             if (!isOpen) {
+                addBtnNode.blur();
                 formNode.reset();
             }
         }
@@ -177,49 +184,70 @@
             toggleAddBtn(false);
         }
 
+        /**
+         * Слушаем горячии клавиши
+         *
+         * @param {Object} event
+         */
+        function handleKeyDown(event) {
+            if (!isPopupOpen) {
+                return;
+            }
+
+            switch (event.keyCode) {
+                case KEY_CODE_ESC:
+                    togglePopup(false);
+                    break;
+                case KEY_CODE_ENTER:
+                    submitToDo();
+                    break;
+            }
+        }
+
+        /**
+         * Добавляет тудушку
+         *
+         */
+        function submitToDo() {
+            const data = getData(MAIN_FIELD_NAME);
+            const todo = {
+                status:'active'
+            };
+            const title = inputNode.value;
+            const desc = textareaNode.value;
+            const gender = document.querySelector('.form__radio-input:checked').value;
+
+            todo.title = title ? title :'--';
+            todo.description = desc ? desc :'--';
+            todo.gender = gender;
+            todo.id = data.length;
+
+            data.unshift(todo);
+
+            inputNode.value = '';
+            textareaNode.value = '';
+
+            setData(MAIN_FIELD_NAME, data);
+            togglePopup(false);
+            buildSections(containerNode, data);
+        }
+
         function main() {
-            const inputNode = document.querySelector('.form__input');
-            const textareaNode = document.querySelector('.form__textarea');
             const removeButtonNode = document.querySelector('.button');
             const formButtonNode = document.querySelector('.form__button');
             const closeButtonNode = document.querySelector('.js-close-popup');
 
             addBtnNode.addEventListener('click', () => togglePopup(true));
-
-            formButtonNode.addEventListener('click', function () {
-                const data = getData(MAIN_FIELD_NAME);
-                const todo = {
-                    status:'active'
-                };
-                const title = inputNode.value;
-                const desc = textareaNode.value;
-                const gender = document.querySelector('.form__radio-input:checked').value;
-
-                todo.title = title ? title :'--';
-                todo.description = desc ? desc :'--';
-                todo.gender = gender;
-                todo.id = data.length;
-
-                data.unshift(todo);
-
-                inputNode.value = '';
-                textareaNode.value = '';
-
-                setData(MAIN_FIELD_NAME, data);
-                togglePopup(false);
-                buildSections(containerNode, data);
-            });
-
-            removeButtonNode.addEventListener('click', function () {
+            formButtonNode.addEventListener('click', submitToDo);
+            document.addEventListener('keydown', handleKeyDown);
+            closeButtonNode.addEventListener('click', () => togglePopup(false));
+            removeButtonNode.addEventListener('click', () => {
                 removeData();
                 renderAddButton();
             });
 
-            closeButtonNode.addEventListener('click', () => togglePopup(false));
-
             buildSections(containerNode, getData(MAIN_FIELD_NAME));
             console.log(getData(MAIN_FIELD_NAME));
         }
-
     });
 }
