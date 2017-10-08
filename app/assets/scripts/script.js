@@ -17,7 +17,7 @@
         const inputNode = document.querySelector('.form__input');
         const textareaNode = document.querySelector('.form__textarea');
         let isPopupOpen = false;
-        let isEdit = false;
+        let editableItemId = null;
 
         main();
 
@@ -125,7 +125,7 @@
             if (item.gender === 'female') {
                 document.querySelector('#female.form__radio-input').checked = true;
             }
-            isEdit = true;
+            editableItemId = id;
             togglePopup(true);
         }
 
@@ -240,8 +240,13 @@
             todo.gender = gender;
             todo.id = data.length;
 
-            if (isEdit) {
-
+            if (editableItemId) {
+                data.forEach((item, index) => {
+                    if (item.id === editableItemId) {
+                        data[index] = todo;
+                    }
+                });
+                editableItemId = null;
             } else {
                 data.unshift(todo);
             }
