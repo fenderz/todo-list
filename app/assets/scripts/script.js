@@ -241,7 +241,7 @@
             todo.id = data.length;
 
             if (editableItemId) {
-                data.forEach((item, index) => {
+                data.find((item, index) => {
                     if (item.id === editableItemId) {
                         data[index] = todo;
                     }
