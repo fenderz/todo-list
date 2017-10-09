@@ -119,7 +119,7 @@
          * @param {number} id
          */
         function editItem(id) {
-            const item = getData(MAIN_FIELD_NAME).filter(item => item.id === id)[0];
+            const item = getData(MAIN_FIELD_NAME).find(item => item.id === id);
             inputNode.value = item.title;
             textareaNode.value = item.description;
             if (item.gender === 'female') {
