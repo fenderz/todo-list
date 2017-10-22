@@ -16,6 +16,7 @@
         const addBtnNode = document.querySelector('.js-add-todo');
         const inputNode = document.querySelector('.form__input');
         const textareaNode = document.querySelector('.form__textarea');
+        const searchInputNode = document.querySelector('.js-search-input');
         let isPopupOpen = false;
         let editableItemId = null;
 
@@ -256,6 +257,17 @@
             buildSections(containerNode, data);
         }
 
+        /**
+         * Поиск по заголовку
+         *
+         * @param {Array} data
+         * @param {string} str
+         * @returns {Array}
+         */
+        function searchData(data, str) {
+            return data.filter(item => item.title.match(new RegExp(str, 'gi')));
+        }
+
         function main() {
             const removeButtonNode = document.querySelector('.button');
             const formButtonNode = document.querySelector('.form__button');
@@ -268,6 +280,16 @@
             removeButtonNode.addEventListener('click', () => {
                 removeData();
                 renderAddButton();
+            });
+
+            searchInputNode.addEventListener('input', event => {
+                const data = searchData(getData(MAIN_FIELD_NAME), event.target.value);
+
+                if (!data.length) {
+                    return;
+                }
+
+                buildSections(containerNode, data);
             });
 
             buildSections(containerNode, getData(MAIN_FIELD_NAME));
